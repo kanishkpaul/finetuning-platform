@@ -32,7 +32,7 @@ if st.button("🚀 Start Fine-tuning"):
             excel_temp.write(excel_file.read())
             excel_path = excel_temp.name
 
-        device = torch.device("dml") if use_gpu else torch.device("cpu")
+            device = torch.device("cuda" if torch.cuda.is_available() and use_gpu else "cpu")
 
         with st.spinner("Fine-tuning in progress..."):
             out_dir = fine_tune_model(
